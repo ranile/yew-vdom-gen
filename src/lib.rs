@@ -8,11 +8,17 @@ pub mod listeners;
 
 pub type Listener = Rc<dyn yew::virtual_dom::Listener>;
 
+pub mod prelude {
+    pub use super::functions::*;
+    pub use super::listeners::*;
+}
+
 #[cfg(test)]
 mod tests {
-    use crate::functions::*;
+    use crate::prelude::*;
     use wasm_bindgen_test::*;
     use yew::prelude::*;
+    use yew::services::ConsoleService;
 
     wasm_bindgen_test_configure!(run_in_browser);
 
