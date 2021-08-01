@@ -1,8 +1,10 @@
+use crate::Listener;
 use yew::virtual_dom::{AttrValue, Attributes, PositionalAttr, VComp, VNode, VTag, VText};
 use yew::{Component, NodeRef};
 pub struct Html {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Html {
@@ -10,6 +12,7 @@ impl Html {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -128,6 +131,10 @@ impl Html {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Html {
@@ -135,6 +142,7 @@ impl Into<VTag> for Html {
         let mut vtag = VTag::new("html");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -145,10 +153,10 @@ impl Into<VNode> for Html {
         VNode::from(vtag)
     }
 }
-
 pub struct Base {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Base {
@@ -156,6 +164,7 @@ impl Base {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -279,6 +288,10 @@ impl Base {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Base {
@@ -286,6 +299,7 @@ impl Into<VTag> for Base {
         let mut vtag = VTag::new("base");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -296,10 +310,10 @@ impl Into<VNode> for Base {
         VNode::from(vtag)
     }
 }
-
 pub struct Head {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Head {
@@ -307,6 +321,7 @@ impl Head {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -420,6 +435,10 @@ impl Head {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Head {
@@ -427,6 +446,7 @@ impl Into<VTag> for Head {
         let mut vtag = VTag::new("head");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -437,10 +457,10 @@ impl Into<VNode> for Head {
         VNode::from(vtag)
     }
 }
-
 pub struct Link {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Link {
@@ -448,6 +468,7 @@ impl Link {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -610,6 +631,10 @@ impl Link {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Link {
@@ -617,6 +642,7 @@ impl Into<VTag> for Link {
         let mut vtag = VTag::new("link");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -627,10 +653,10 @@ impl Into<VNode> for Link {
         VNode::from(vtag)
     }
 }
-
 pub struct Meta {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Meta {
@@ -638,6 +664,7 @@ impl Meta {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -772,6 +799,10 @@ impl Meta {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Meta {
@@ -779,6 +810,7 @@ impl Into<VTag> for Meta {
         let mut vtag = VTag::new("meta");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -789,10 +821,10 @@ impl Into<VNode> for Meta {
         VNode::from(vtag)
     }
 }
-
 pub struct Style {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Style {
@@ -800,6 +832,7 @@ impl Style {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -928,6 +961,10 @@ impl Style {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Style {
@@ -935,6 +972,7 @@ impl Into<VTag> for Style {
         let mut vtag = VTag::new("style");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -945,10 +983,10 @@ impl Into<VNode> for Style {
         VNode::from(vtag)
     }
 }
-
 pub struct Title {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Title {
@@ -956,6 +994,7 @@ impl Title {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -1069,6 +1108,10 @@ impl Title {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Title {
@@ -1076,6 +1119,7 @@ impl Into<VTag> for Title {
         let mut vtag = VTag::new("title");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -1086,10 +1130,10 @@ impl Into<VNode> for Title {
         VNode::from(vtag)
     }
 }
-
 pub struct Body {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Body {
@@ -1097,6 +1141,7 @@ impl Body {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -1221,6 +1266,10 @@ impl Body {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Body {
@@ -1228,6 +1277,7 @@ impl Into<VTag> for Body {
         let mut vtag = VTag::new("body");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -1238,10 +1288,10 @@ impl Into<VNode> for Body {
         VNode::from(vtag)
     }
 }
-
 pub struct Address {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Address {
@@ -1249,6 +1299,7 @@ impl Address {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -1362,6 +1413,10 @@ impl Address {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Address {
@@ -1369,6 +1424,7 @@ impl Into<VTag> for Address {
         let mut vtag = VTag::new("address");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -1379,10 +1435,10 @@ impl Into<VNode> for Address {
         VNode::from(vtag)
     }
 }
-
 pub struct Article {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Article {
@@ -1390,6 +1446,7 @@ impl Article {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -1503,6 +1560,10 @@ impl Article {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Article {
@@ -1510,6 +1571,7 @@ impl Into<VTag> for Article {
         let mut vtag = VTag::new("article");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -1520,10 +1582,10 @@ impl Into<VNode> for Article {
         VNode::from(vtag)
     }
 }
-
 pub struct Aside {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Aside {
@@ -1531,6 +1593,7 @@ impl Aside {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -1644,6 +1707,10 @@ impl Aside {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Aside {
@@ -1651,6 +1718,7 @@ impl Into<VTag> for Aside {
         let mut vtag = VTag::new("aside");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -1661,10 +1729,10 @@ impl Into<VNode> for Aside {
         VNode::from(vtag)
     }
 }
-
 pub struct Footer {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Footer {
@@ -1672,6 +1740,7 @@ impl Footer {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -1785,6 +1854,10 @@ impl Footer {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Footer {
@@ -1792,6 +1865,7 @@ impl Into<VTag> for Footer {
         let mut vtag = VTag::new("footer");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -1802,10 +1876,10 @@ impl Into<VNode> for Footer {
         VNode::from(vtag)
     }
 }
-
 pub struct Header {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Header {
@@ -1813,6 +1887,7 @@ impl Header {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -1926,6 +2001,10 @@ impl Header {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Header {
@@ -1933,6 +2012,7 @@ impl Into<VTag> for Header {
         let mut vtag = VTag::new("header");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -1943,10 +2023,10 @@ impl Into<VNode> for Header {
         VNode::from(vtag)
     }
 }
-
 pub struct Main {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Main {
@@ -1954,6 +2034,7 @@ impl Main {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -2067,6 +2148,10 @@ impl Main {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Main {
@@ -2074,6 +2159,7 @@ impl Into<VTag> for Main {
         let mut vtag = VTag::new("main");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -2084,10 +2170,10 @@ impl Into<VNode> for Main {
         VNode::from(vtag)
     }
 }
-
 pub struct Nav {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Nav {
@@ -2095,6 +2181,7 @@ impl Nav {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -2208,6 +2295,10 @@ impl Nav {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Nav {
@@ -2215,6 +2306,7 @@ impl Into<VTag> for Nav {
         let mut vtag = VTag::new("nav");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -2225,10 +2317,10 @@ impl Into<VNode> for Nav {
         VNode::from(vtag)
     }
 }
-
 pub struct Section {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Section {
@@ -2236,6 +2328,7 @@ impl Section {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -2349,6 +2442,10 @@ impl Section {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Section {
@@ -2356,6 +2453,7 @@ impl Into<VTag> for Section {
         let mut vtag = VTag::new("section");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -2366,10 +2464,10 @@ impl Into<VNode> for Section {
         VNode::from(vtag)
     }
 }
-
 pub struct Blockquote {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Blockquote {
@@ -2377,6 +2475,7 @@ impl Blockquote {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -2495,6 +2594,10 @@ impl Blockquote {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Blockquote {
@@ -2502,6 +2605,7 @@ impl Into<VTag> for Blockquote {
         let mut vtag = VTag::new("blockquote");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -2512,10 +2616,10 @@ impl Into<VNode> for Blockquote {
         VNode::from(vtag)
     }
 }
-
 pub struct Dd {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Dd {
@@ -2523,6 +2627,7 @@ impl Dd {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -2636,6 +2741,10 @@ impl Dd {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Dd {
@@ -2643,6 +2752,7 @@ impl Into<VTag> for Dd {
         let mut vtag = VTag::new("dd");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -2653,10 +2763,10 @@ impl Into<VNode> for Dd {
         VNode::from(vtag)
     }
 }
-
 pub struct Div {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Div {
@@ -2664,6 +2774,7 @@ impl Div {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -2777,6 +2888,10 @@ impl Div {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Div {
@@ -2784,6 +2899,7 @@ impl Into<VTag> for Div {
         let mut vtag = VTag::new("div");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -2794,10 +2910,10 @@ impl Into<VNode> for Div {
         VNode::from(vtag)
     }
 }
-
 pub struct Dl {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Dl {
@@ -2805,6 +2921,7 @@ impl Dl {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -2918,6 +3035,10 @@ impl Dl {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Dl {
@@ -2925,6 +3046,7 @@ impl Into<VTag> for Dl {
         let mut vtag = VTag::new("dl");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -2935,10 +3057,10 @@ impl Into<VNode> for Dl {
         VNode::from(vtag)
     }
 }
-
 pub struct Dt {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Dt {
@@ -2946,6 +3068,7 @@ impl Dt {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -3059,6 +3182,10 @@ impl Dt {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Dt {
@@ -3066,6 +3193,7 @@ impl Into<VTag> for Dt {
         let mut vtag = VTag::new("dt");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -3076,10 +3204,10 @@ impl Into<VNode> for Dt {
         VNode::from(vtag)
     }
 }
-
 pub struct Figcaption {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Figcaption {
@@ -3087,6 +3215,7 @@ impl Figcaption {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -3200,6 +3329,10 @@ impl Figcaption {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Figcaption {
@@ -3207,6 +3340,7 @@ impl Into<VTag> for Figcaption {
         let mut vtag = VTag::new("figcaption");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -3217,10 +3351,10 @@ impl Into<VNode> for Figcaption {
         VNode::from(vtag)
     }
 }
-
 pub struct Figure {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Figure {
@@ -3228,6 +3362,7 @@ impl Figure {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -3341,6 +3476,10 @@ impl Figure {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Figure {
@@ -3348,6 +3487,7 @@ impl Into<VTag> for Figure {
         let mut vtag = VTag::new("figure");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -3358,10 +3498,10 @@ impl Into<VNode> for Figure {
         VNode::from(vtag)
     }
 }
-
 pub struct Hr {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Hr {
@@ -3369,6 +3509,7 @@ impl Hr {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -3492,6 +3633,10 @@ impl Hr {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Hr {
@@ -3499,6 +3644,7 @@ impl Into<VTag> for Hr {
         let mut vtag = VTag::new("hr");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -3509,10 +3655,10 @@ impl Into<VNode> for Hr {
         VNode::from(vtag)
     }
 }
-
 pub struct Li {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Li {
@@ -3520,6 +3666,7 @@ impl Li {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -3638,6 +3785,10 @@ impl Li {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Li {
@@ -3645,6 +3796,7 @@ impl Into<VTag> for Li {
         let mut vtag = VTag::new("li");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -3655,10 +3807,10 @@ impl Into<VNode> for Li {
         VNode::from(vtag)
     }
 }
-
 pub struct Ol {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Ol {
@@ -3666,6 +3818,7 @@ impl Ol {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -3789,6 +3942,10 @@ impl Ol {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Ol {
@@ -3796,6 +3953,7 @@ impl Into<VTag> for Ol {
         let mut vtag = VTag::new("ol");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -3806,10 +3964,10 @@ impl Into<VNode> for Ol {
         VNode::from(vtag)
     }
 }
-
 pub struct P {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl P {
@@ -3817,6 +3975,7 @@ impl P {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -3930,6 +4089,10 @@ impl P {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for P {
@@ -3937,6 +4100,7 @@ impl Into<VTag> for P {
         let mut vtag = VTag::new("p");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -3947,10 +4111,10 @@ impl Into<VNode> for P {
         VNode::from(vtag)
     }
 }
-
 pub struct Pre {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Pre {
@@ -3958,6 +4122,7 @@ impl Pre {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -4071,6 +4236,10 @@ impl Pre {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Pre {
@@ -4078,6 +4247,7 @@ impl Into<VTag> for Pre {
         let mut vtag = VTag::new("pre");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -4088,10 +4258,10 @@ impl Into<VNode> for Pre {
         VNode::from(vtag)
     }
 }
-
 pub struct Ul {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Ul {
@@ -4099,6 +4269,7 @@ impl Ul {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -4212,6 +4383,10 @@ impl Ul {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Ul {
@@ -4219,6 +4394,7 @@ impl Into<VTag> for Ul {
         let mut vtag = VTag::new("ul");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -4229,10 +4405,10 @@ impl Into<VNode> for Ul {
         VNode::from(vtag)
     }
 }
-
 pub struct A {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl A {
@@ -4240,6 +4416,7 @@ impl A {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -4399,6 +4576,10 @@ impl A {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for A {
@@ -4406,6 +4587,7 @@ impl Into<VTag> for A {
         let mut vtag = VTag::new("a");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -4416,10 +4598,10 @@ impl Into<VNode> for A {
         VNode::from(vtag)
     }
 }
-
 pub struct Abbr {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Abbr {
@@ -4427,6 +4609,7 @@ impl Abbr {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -4540,6 +4723,10 @@ impl Abbr {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Abbr {
@@ -4547,6 +4734,7 @@ impl Into<VTag> for Abbr {
         let mut vtag = VTag::new("abbr");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -4557,10 +4745,10 @@ impl Into<VNode> for Abbr {
         VNode::from(vtag)
     }
 }
-
 pub struct B {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl B {
@@ -4568,6 +4756,7 @@ impl B {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -4681,6 +4870,10 @@ impl B {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for B {
@@ -4688,6 +4881,7 @@ impl Into<VTag> for B {
         let mut vtag = VTag::new("b");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -4698,10 +4892,10 @@ impl Into<VNode> for B {
         VNode::from(vtag)
     }
 }
-
 pub struct Bdi {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Bdi {
@@ -4709,6 +4903,7 @@ impl Bdi {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -4822,6 +5017,10 @@ impl Bdi {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Bdi {
@@ -4829,6 +5028,7 @@ impl Into<VTag> for Bdi {
         let mut vtag = VTag::new("bdi");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -4839,10 +5039,10 @@ impl Into<VNode> for Bdi {
         VNode::from(vtag)
     }
 }
-
 pub struct Bdo {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Bdo {
@@ -4850,6 +5050,7 @@ impl Bdo {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -4963,6 +5164,10 @@ impl Bdo {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Bdo {
@@ -4970,6 +5175,7 @@ impl Into<VTag> for Bdo {
         let mut vtag = VTag::new("bdo");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -4980,10 +5186,10 @@ impl Into<VNode> for Bdo {
         VNode::from(vtag)
     }
 }
-
 pub struct Br {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Br {
@@ -4991,6 +5197,7 @@ impl Br {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -5104,6 +5311,10 @@ impl Br {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Br {
@@ -5111,6 +5322,7 @@ impl Into<VTag> for Br {
         let mut vtag = VTag::new("br");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -5121,10 +5333,10 @@ impl Into<VNode> for Br {
         VNode::from(vtag)
     }
 }
-
 pub struct Cite {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Cite {
@@ -5132,6 +5344,7 @@ impl Cite {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -5245,6 +5458,10 @@ impl Cite {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Cite {
@@ -5252,6 +5469,7 @@ impl Into<VTag> for Cite {
         let mut vtag = VTag::new("cite");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -5262,10 +5480,10 @@ impl Into<VNode> for Cite {
         VNode::from(vtag)
     }
 }
-
 pub struct Code {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Code {
@@ -5273,6 +5491,7 @@ impl Code {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -5386,6 +5605,10 @@ impl Code {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Code {
@@ -5393,6 +5616,7 @@ impl Into<VTag> for Code {
         let mut vtag = VTag::new("code");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -5403,10 +5627,10 @@ impl Into<VNode> for Code {
         VNode::from(vtag)
     }
 }
-
 pub struct Data {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Data {
@@ -5414,6 +5638,7 @@ impl Data {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -5532,6 +5757,10 @@ impl Data {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Data {
@@ -5539,6 +5768,7 @@ impl Into<VTag> for Data {
         let mut vtag = VTag::new("data");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -5549,10 +5779,10 @@ impl Into<VNode> for Data {
         VNode::from(vtag)
     }
 }
-
 pub struct Dfn {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Dfn {
@@ -5560,6 +5790,7 @@ impl Dfn {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -5673,6 +5904,10 @@ impl Dfn {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Dfn {
@@ -5680,6 +5915,7 @@ impl Into<VTag> for Dfn {
         let mut vtag = VTag::new("dfn");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -5690,10 +5926,10 @@ impl Into<VNode> for Dfn {
         VNode::from(vtag)
     }
 }
-
 pub struct Em {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Em {
@@ -5701,6 +5937,7 @@ impl Em {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -5814,6 +6051,10 @@ impl Em {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Em {
@@ -5821,6 +6062,7 @@ impl Into<VTag> for Em {
         let mut vtag = VTag::new("em");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -5831,10 +6073,10 @@ impl Into<VNode> for Em {
         VNode::from(vtag)
     }
 }
-
 pub struct I {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl I {
@@ -5842,6 +6084,7 @@ impl I {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -5955,6 +6198,10 @@ impl I {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for I {
@@ -5962,6 +6209,7 @@ impl Into<VTag> for I {
         let mut vtag = VTag::new("i");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -5972,10 +6220,10 @@ impl Into<VNode> for I {
         VNode::from(vtag)
     }
 }
-
 pub struct Kbd {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Kbd {
@@ -5983,6 +6231,7 @@ impl Kbd {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -6096,6 +6345,10 @@ impl Kbd {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Kbd {
@@ -6103,6 +6356,7 @@ impl Into<VTag> for Kbd {
         let mut vtag = VTag::new("kbd");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -6113,10 +6367,10 @@ impl Into<VNode> for Kbd {
         VNode::from(vtag)
     }
 }
-
 pub struct Mark {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Mark {
@@ -6124,6 +6378,7 @@ impl Mark {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -6237,6 +6492,10 @@ impl Mark {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Mark {
@@ -6244,6 +6503,7 @@ impl Into<VTag> for Mark {
         let mut vtag = VTag::new("mark");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -6254,10 +6514,10 @@ impl Into<VNode> for Mark {
         VNode::from(vtag)
     }
 }
-
 pub struct Q {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Q {
@@ -6265,6 +6525,7 @@ impl Q {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -6383,6 +6644,10 @@ impl Q {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Q {
@@ -6390,6 +6655,7 @@ impl Into<VTag> for Q {
         let mut vtag = VTag::new("q");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -6400,10 +6666,10 @@ impl Into<VNode> for Q {
         VNode::from(vtag)
     }
 }
-
 pub struct Rp {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Rp {
@@ -6411,6 +6677,7 @@ impl Rp {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -6524,6 +6791,10 @@ impl Rp {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Rp {
@@ -6531,6 +6802,7 @@ impl Into<VTag> for Rp {
         let mut vtag = VTag::new("rp");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -6541,10 +6813,10 @@ impl Into<VNode> for Rp {
         VNode::from(vtag)
     }
 }
-
 pub struct Rt {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Rt {
@@ -6552,6 +6824,7 @@ impl Rt {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -6665,6 +6938,10 @@ impl Rt {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Rt {
@@ -6672,6 +6949,7 @@ impl Into<VTag> for Rt {
         let mut vtag = VTag::new("rt");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -6682,10 +6960,10 @@ impl Into<VNode> for Rt {
         VNode::from(vtag)
     }
 }
-
 pub struct Ruby {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Ruby {
@@ -6693,6 +6971,7 @@ impl Ruby {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -6806,6 +7085,10 @@ impl Ruby {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Ruby {
@@ -6813,6 +7096,7 @@ impl Into<VTag> for Ruby {
         let mut vtag = VTag::new("ruby");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -6823,10 +7107,10 @@ impl Into<VNode> for Ruby {
         VNode::from(vtag)
     }
 }
-
 pub struct S {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl S {
@@ -6834,6 +7118,7 @@ impl S {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -6947,6 +7232,10 @@ impl S {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for S {
@@ -6954,6 +7243,7 @@ impl Into<VTag> for S {
         let mut vtag = VTag::new("s");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -6964,10 +7254,10 @@ impl Into<VNode> for S {
         VNode::from(vtag)
     }
 }
-
 pub struct Samp {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Samp {
@@ -6975,6 +7265,7 @@ impl Samp {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -7088,6 +7379,10 @@ impl Samp {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Samp {
@@ -7095,6 +7390,7 @@ impl Into<VTag> for Samp {
         let mut vtag = VTag::new("samp");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -7105,10 +7401,10 @@ impl Into<VNode> for Samp {
         VNode::from(vtag)
     }
 }
-
 pub struct Small {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Small {
@@ -7116,6 +7412,7 @@ impl Small {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -7229,6 +7526,10 @@ impl Small {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Small {
@@ -7236,6 +7537,7 @@ impl Into<VTag> for Small {
         let mut vtag = VTag::new("small");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -7246,10 +7548,10 @@ impl Into<VNode> for Small {
         VNode::from(vtag)
     }
 }
-
 pub struct Span {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Span {
@@ -7257,6 +7559,7 @@ impl Span {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -7370,6 +7673,10 @@ impl Span {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Span {
@@ -7377,6 +7684,7 @@ impl Into<VTag> for Span {
         let mut vtag = VTag::new("span");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -7387,10 +7695,10 @@ impl Into<VNode> for Span {
         VNode::from(vtag)
     }
 }
-
 pub struct Strong {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Strong {
@@ -7398,6 +7706,7 @@ impl Strong {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -7511,6 +7820,10 @@ impl Strong {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Strong {
@@ -7518,6 +7831,7 @@ impl Into<VTag> for Strong {
         let mut vtag = VTag::new("strong");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -7528,10 +7842,10 @@ impl Into<VNode> for Strong {
         VNode::from(vtag)
     }
 }
-
 pub struct Sub {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Sub {
@@ -7539,6 +7853,7 @@ impl Sub {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -7652,6 +7967,10 @@ impl Sub {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Sub {
@@ -7659,6 +7978,7 @@ impl Into<VTag> for Sub {
         let mut vtag = VTag::new("sub");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -7669,10 +7989,10 @@ impl Into<VNode> for Sub {
         VNode::from(vtag)
     }
 }
-
 pub struct Sup {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Sup {
@@ -7680,6 +8000,7 @@ impl Sup {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -7793,6 +8114,10 @@ impl Sup {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Sup {
@@ -7800,6 +8125,7 @@ impl Into<VTag> for Sup {
         let mut vtag = VTag::new("sup");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -7810,10 +8136,10 @@ impl Into<VNode> for Sup {
         VNode::from(vtag)
     }
 }
-
 pub struct Time {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Time {
@@ -7821,6 +8147,7 @@ impl Time {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -7939,6 +8266,10 @@ impl Time {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Time {
@@ -7946,6 +8277,7 @@ impl Into<VTag> for Time {
         let mut vtag = VTag::new("time");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -7956,10 +8288,10 @@ impl Into<VNode> for Time {
         VNode::from(vtag)
     }
 }
-
 pub struct U {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl U {
@@ -7967,6 +8299,7 @@ impl U {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -8080,6 +8413,10 @@ impl U {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for U {
@@ -8087,6 +8424,7 @@ impl Into<VTag> for U {
         let mut vtag = VTag::new("u");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -8097,10 +8435,10 @@ impl Into<VNode> for U {
         VNode::from(vtag)
     }
 }
-
 pub struct Var {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Var {
@@ -8108,6 +8446,7 @@ impl Var {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -8221,6 +8560,10 @@ impl Var {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Var {
@@ -8228,6 +8571,7 @@ impl Into<VTag> for Var {
         let mut vtag = VTag::new("var");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -8238,10 +8582,10 @@ impl Into<VNode> for Var {
         VNode::from(vtag)
     }
 }
-
 pub struct Wbr {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Wbr {
@@ -8249,6 +8593,7 @@ impl Wbr {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -8362,6 +8707,10 @@ impl Wbr {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Wbr {
@@ -8369,6 +8718,7 @@ impl Into<VTag> for Wbr {
         let mut vtag = VTag::new("wbr");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -8379,10 +8729,10 @@ impl Into<VNode> for Wbr {
         VNode::from(vtag)
     }
 }
-
 pub struct Area {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Area {
@@ -8390,6 +8740,7 @@ impl Area {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -8559,6 +8910,10 @@ impl Area {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Area {
@@ -8566,6 +8921,7 @@ impl Into<VTag> for Area {
         let mut vtag = VTag::new("area");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -8576,10 +8932,10 @@ impl Into<VNode> for Area {
         VNode::from(vtag)
     }
 }
-
 pub struct Audio {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Audio {
@@ -8587,6 +8943,7 @@ impl Audio {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -8741,6 +9098,10 @@ impl Audio {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Audio {
@@ -8748,6 +9109,7 @@ impl Into<VTag> for Audio {
         let mut vtag = VTag::new("audio");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -8758,10 +9120,10 @@ impl Into<VNode> for Audio {
         VNode::from(vtag)
     }
 }
-
 pub struct Img {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Img {
@@ -8769,6 +9131,7 @@ impl Img {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -8966,6 +9329,10 @@ impl Img {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Img {
@@ -8973,6 +9340,7 @@ impl Into<VTag> for Img {
         let mut vtag = VTag::new("img");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -8983,10 +9351,10 @@ impl Into<VNode> for Img {
         VNode::from(vtag)
     }
 }
-
 pub struct Map {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Map {
@@ -8994,6 +9362,7 @@ impl Map {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -9112,6 +9481,10 @@ impl Map {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Map {
@@ -9119,6 +9492,7 @@ impl Into<VTag> for Map {
         let mut vtag = VTag::new("map");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -9129,10 +9503,10 @@ impl Into<VNode> for Map {
         VNode::from(vtag)
     }
 }
-
 pub struct Track {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Track {
@@ -9140,6 +9514,7 @@ impl Track {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -9278,6 +9653,10 @@ impl Track {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Track {
@@ -9285,6 +9664,7 @@ impl Into<VTag> for Track {
         let mut vtag = VTag::new("track");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -9295,10 +9675,10 @@ impl Into<VNode> for Track {
         VNode::from(vtag)
     }
 }
-
 pub struct Video {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Video {
@@ -9306,6 +9686,7 @@ impl Video {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -9475,6 +9856,10 @@ impl Video {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Video {
@@ -9482,6 +9867,7 @@ impl Into<VTag> for Video {
         let mut vtag = VTag::new("video");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -9492,10 +9878,10 @@ impl Into<VNode> for Video {
         VNode::from(vtag)
     }
 }
-
 pub struct Embed {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Embed {
@@ -9503,6 +9889,7 @@ impl Embed {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -9636,6 +10023,10 @@ impl Embed {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Embed {
@@ -9643,6 +10034,7 @@ impl Into<VTag> for Embed {
         let mut vtag = VTag::new("embed");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -9653,10 +10045,10 @@ impl Into<VNode> for Embed {
         VNode::from(vtag)
     }
 }
-
 pub struct Iframe {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Iframe {
@@ -9664,6 +10056,7 @@ impl Iframe {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -9839,6 +10232,10 @@ impl Iframe {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Iframe {
@@ -9846,6 +10243,7 @@ impl Into<VTag> for Iframe {
         let mut vtag = VTag::new("iframe");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -9856,10 +10254,10 @@ impl Into<VNode> for Iframe {
         VNode::from(vtag)
     }
 }
-
 pub struct Object {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Object {
@@ -9867,6 +10265,7 @@ impl Object {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -10020,6 +10419,10 @@ impl Object {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Object {
@@ -10027,6 +10430,7 @@ impl Into<VTag> for Object {
         let mut vtag = VTag::new("object");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -10037,10 +10441,10 @@ impl Into<VNode> for Object {
         VNode::from(vtag)
     }
 }
-
 pub struct Param {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Param {
@@ -10048,6 +10452,7 @@ impl Param {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -10171,6 +10576,10 @@ impl Param {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Param {
@@ -10178,6 +10587,7 @@ impl Into<VTag> for Param {
         let mut vtag = VTag::new("param");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -10188,10 +10598,10 @@ impl Into<VNode> for Param {
         VNode::from(vtag)
     }
 }
-
 pub struct Picture {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Picture {
@@ -10199,6 +10609,7 @@ impl Picture {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -10312,6 +10723,10 @@ impl Picture {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Picture {
@@ -10319,6 +10734,7 @@ impl Into<VTag> for Picture {
         let mut vtag = VTag::new("picture");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -10329,10 +10745,10 @@ impl Into<VNode> for Picture {
         VNode::from(vtag)
     }
 }
-
 pub struct Portal {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Portal {
@@ -10340,6 +10756,7 @@ impl Portal {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -10453,6 +10870,10 @@ impl Portal {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Portal {
@@ -10460,6 +10881,7 @@ impl Into<VTag> for Portal {
         let mut vtag = VTag::new("portal");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -10470,10 +10892,10 @@ impl Into<VNode> for Portal {
         VNode::from(vtag)
     }
 }
-
 pub struct Source {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Source {
@@ -10481,6 +10903,7 @@ impl Source {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -10619,6 +11042,10 @@ impl Source {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Source {
@@ -10626,6 +11053,7 @@ impl Into<VTag> for Source {
         let mut vtag = VTag::new("source");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -10636,10 +11064,10 @@ impl Into<VNode> for Source {
         VNode::from(vtag)
     }
 }
-
 pub struct Svg {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Svg {
@@ -10647,6 +11075,7 @@ impl Svg {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -10760,6 +11189,10 @@ impl Svg {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Svg {
@@ -10767,6 +11200,7 @@ impl Into<VTag> for Svg {
         let mut vtag = VTag::new("svg");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -10777,10 +11211,10 @@ impl Into<VNode> for Svg {
         VNode::from(vtag)
     }
 }
-
 pub struct Math {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Math {
@@ -10788,6 +11222,7 @@ impl Math {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -10901,6 +11336,10 @@ impl Math {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Math {
@@ -10908,6 +11347,7 @@ impl Into<VTag> for Math {
         let mut vtag = VTag::new("math");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -10918,10 +11358,10 @@ impl Into<VNode> for Math {
         VNode::from(vtag)
     }
 }
-
 pub struct Canvas {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Canvas {
@@ -10929,6 +11369,7 @@ impl Canvas {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -11052,6 +11493,10 @@ impl Canvas {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Canvas {
@@ -11059,6 +11504,7 @@ impl Into<VTag> for Canvas {
         let mut vtag = VTag::new("canvas");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -11069,10 +11515,10 @@ impl Into<VNode> for Canvas {
         VNode::from(vtag)
     }
 }
-
 pub struct Noscript {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Noscript {
@@ -11080,6 +11526,7 @@ impl Noscript {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -11193,6 +11640,10 @@ impl Noscript {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Noscript {
@@ -11200,6 +11651,7 @@ impl Into<VTag> for Noscript {
         let mut vtag = VTag::new("noscript");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -11210,10 +11662,10 @@ impl Into<VNode> for Noscript {
         VNode::from(vtag)
     }
 }
-
 pub struct Script {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Script {
@@ -11221,6 +11673,7 @@ impl Script {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -11388,6 +11841,10 @@ impl Script {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Script {
@@ -11395,6 +11852,7 @@ impl Into<VTag> for Script {
         let mut vtag = VTag::new("script");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -11405,10 +11863,10 @@ impl Into<VNode> for Script {
         VNode::from(vtag)
     }
 }
-
 pub struct Del {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Del {
@@ -11416,6 +11874,7 @@ impl Del {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -11539,6 +11998,10 @@ impl Del {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Del {
@@ -11546,6 +12009,7 @@ impl Into<VTag> for Del {
         let mut vtag = VTag::new("del");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -11556,10 +12020,10 @@ impl Into<VNode> for Del {
         VNode::from(vtag)
     }
 }
-
 pub struct Ins {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Ins {
@@ -11567,6 +12031,7 @@ impl Ins {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -11690,6 +12155,10 @@ impl Ins {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Ins {
@@ -11697,6 +12166,7 @@ impl Into<VTag> for Ins {
         let mut vtag = VTag::new("ins");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -11707,10 +12177,10 @@ impl Into<VNode> for Ins {
         VNode::from(vtag)
     }
 }
-
 pub struct Caption {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Caption {
@@ -11718,6 +12188,7 @@ impl Caption {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -11836,6 +12307,10 @@ impl Caption {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Caption {
@@ -11843,6 +12318,7 @@ impl Into<VTag> for Caption {
         let mut vtag = VTag::new("caption");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -11853,10 +12329,10 @@ impl Into<VNode> for Caption {
         VNode::from(vtag)
     }
 }
-
 pub struct Col {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Col {
@@ -11864,6 +12340,7 @@ impl Col {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -11992,6 +12469,10 @@ impl Col {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Col {
@@ -11999,6 +12480,7 @@ impl Into<VTag> for Col {
         let mut vtag = VTag::new("col");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -12009,10 +12491,10 @@ impl Into<VNode> for Col {
         VNode::from(vtag)
     }
 }
-
 pub struct Colgroup {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Colgroup {
@@ -12020,6 +12502,7 @@ impl Colgroup {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -12148,6 +12631,10 @@ impl Colgroup {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Colgroup {
@@ -12155,6 +12642,7 @@ impl Into<VTag> for Colgroup {
         let mut vtag = VTag::new("colgroup");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -12165,10 +12653,10 @@ impl Into<VNode> for Colgroup {
         VNode::from(vtag)
     }
 }
-
 pub struct Table {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Table {
@@ -12176,6 +12664,7 @@ impl Table {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -12315,6 +12804,10 @@ impl Table {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Table {
@@ -12322,6 +12815,7 @@ impl Into<VTag> for Table {
         let mut vtag = VTag::new("table");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -12332,10 +12826,10 @@ impl Into<VNode> for Table {
         VNode::from(vtag)
     }
 }
-
 pub struct Tbody {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Tbody {
@@ -12343,6 +12837,7 @@ impl Tbody {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -12466,6 +12961,10 @@ impl Tbody {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Tbody {
@@ -12473,6 +12972,7 @@ impl Into<VTag> for Tbody {
         let mut vtag = VTag::new("tbody");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -12483,10 +12983,10 @@ impl Into<VNode> for Tbody {
         VNode::from(vtag)
     }
 }
-
 pub struct Td {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Td {
@@ -12494,6 +12994,7 @@ impl Td {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -12638,6 +13139,10 @@ impl Td {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Td {
@@ -12645,6 +13150,7 @@ impl Into<VTag> for Td {
         let mut vtag = VTag::new("td");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -12655,10 +13161,10 @@ impl Into<VNode> for Td {
         VNode::from(vtag)
     }
 }
-
 pub struct Tfoot {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Tfoot {
@@ -12666,6 +13172,7 @@ impl Tfoot {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -12789,6 +13296,10 @@ impl Tfoot {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Tfoot {
@@ -12796,6 +13307,7 @@ impl Into<VTag> for Tfoot {
         let mut vtag = VTag::new("tfoot");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -12806,10 +13318,10 @@ impl Into<VNode> for Tfoot {
         VNode::from(vtag)
     }
 }
-
 pub struct Th {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Th {
@@ -12817,6 +13329,7 @@ impl Th {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -12966,6 +13479,10 @@ impl Th {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Th {
@@ -12973,6 +13490,7 @@ impl Into<VTag> for Th {
         let mut vtag = VTag::new("th");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -12983,10 +13501,10 @@ impl Into<VNode> for Th {
         VNode::from(vtag)
     }
 }
-
 pub struct Thead {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Thead {
@@ -12994,6 +13512,7 @@ impl Thead {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -13112,6 +13631,10 @@ impl Thead {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Thead {
@@ -13119,6 +13642,7 @@ impl Into<VTag> for Thead {
         let mut vtag = VTag::new("thead");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -13129,10 +13653,10 @@ impl Into<VNode> for Thead {
         VNode::from(vtag)
     }
 }
-
 pub struct Tr {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Tr {
@@ -13140,6 +13664,7 @@ impl Tr {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -13263,6 +13788,10 @@ impl Tr {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Tr {
@@ -13270,6 +13799,7 @@ impl Into<VTag> for Tr {
         let mut vtag = VTag::new("tr");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -13280,10 +13810,10 @@ impl Into<VNode> for Tr {
         VNode::from(vtag)
     }
 }
-
 pub struct Button {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Button {
@@ -13291,6 +13821,7 @@ impl Button {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -13465,6 +13996,10 @@ impl Button {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Button {
@@ -13472,6 +14007,7 @@ impl Into<VTag> for Button {
         let mut vtag = VTag::new("button");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -13482,10 +14018,10 @@ impl Into<VNode> for Button {
         VNode::from(vtag)
     }
 }
-
 pub struct Datalist {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Datalist {
@@ -13493,6 +14029,7 @@ impl Datalist {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -13606,6 +14143,10 @@ impl Datalist {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Datalist {
@@ -13613,6 +14154,7 @@ impl Into<VTag> for Datalist {
         let mut vtag = VTag::new("datalist");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -13623,10 +14165,10 @@ impl Into<VNode> for Datalist {
         VNode::from(vtag)
     }
 }
-
 pub struct Fieldset {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Fieldset {
@@ -13634,6 +14176,7 @@ impl Fieldset {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -13762,6 +14305,10 @@ impl Fieldset {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Fieldset {
@@ -13769,6 +14316,7 @@ impl Into<VTag> for Fieldset {
         let mut vtag = VTag::new("fieldset");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -13779,10 +14327,10 @@ impl Into<VNode> for Fieldset {
         VNode::from(vtag)
     }
 }
-
 pub struct Form {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Form {
@@ -13790,6 +14338,7 @@ impl Form {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -13951,6 +14500,10 @@ impl Form {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Form {
@@ -13958,6 +14511,7 @@ impl Into<VTag> for Form {
         let mut vtag = VTag::new("form");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -13968,10 +14522,10 @@ impl Into<VNode> for Form {
         VNode::from(vtag)
     }
 }
-
 pub struct Input {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Input {
@@ -13979,6 +14533,7 @@ impl Input {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -14267,6 +14822,10 @@ impl Input {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Input {
@@ -14274,6 +14833,7 @@ impl Into<VTag> for Input {
         let mut vtag = VTag::new("input");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -14284,10 +14844,10 @@ impl Into<VNode> for Input {
         VNode::from(vtag)
     }
 }
-
 pub struct Label {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Label {
@@ -14295,6 +14855,7 @@ impl Label {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -14418,6 +14979,10 @@ impl Label {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Label {
@@ -14425,6 +14990,7 @@ impl Into<VTag> for Label {
         let mut vtag = VTag::new("label");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -14435,10 +15001,10 @@ impl Into<VNode> for Label {
         VNode::from(vtag)
     }
 }
-
 pub struct Legend {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Legend {
@@ -14446,6 +15012,7 @@ impl Legend {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -14559,6 +15126,10 @@ impl Legend {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Legend {
@@ -14566,6 +15137,7 @@ impl Into<VTag> for Legend {
         let mut vtag = VTag::new("legend");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -14576,10 +15148,10 @@ impl Into<VNode> for Legend {
         VNode::from(vtag)
     }
 }
-
 pub struct Meter {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Meter {
@@ -14587,6 +15159,7 @@ impl Meter {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -14735,6 +15308,10 @@ impl Meter {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Meter {
@@ -14742,6 +15319,7 @@ impl Into<VTag> for Meter {
         let mut vtag = VTag::new("meter");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -14752,10 +15330,10 @@ impl Into<VNode> for Meter {
         VNode::from(vtag)
     }
 }
-
 pub struct Optgroup {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Optgroup {
@@ -14763,6 +15341,7 @@ impl Optgroup {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -14886,6 +15465,10 @@ impl Optgroup {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Optgroup {
@@ -14893,6 +15476,7 @@ impl Into<VTag> for Optgroup {
         let mut vtag = VTag::new("optgroup");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -14903,10 +15487,10 @@ impl Into<VNode> for Optgroup {
         VNode::from(vtag)
     }
 }
-
 pub struct Option {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Option {
@@ -14914,6 +15498,7 @@ impl Option {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -15047,6 +15632,10 @@ impl Option {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Option {
@@ -15054,6 +15643,7 @@ impl Into<VTag> for Option {
         let mut vtag = VTag::new("option");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -15064,10 +15654,10 @@ impl Into<VNode> for Option {
         VNode::from(vtag)
     }
 }
-
 pub struct Output {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Output {
@@ -15075,6 +15665,7 @@ impl Output {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -15203,6 +15794,10 @@ impl Output {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Output {
@@ -15210,6 +15805,7 @@ impl Into<VTag> for Output {
         let mut vtag = VTag::new("output");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -15220,10 +15816,10 @@ impl Into<VNode> for Output {
         VNode::from(vtag)
     }
 }
-
 pub struct Progress {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Progress {
@@ -15231,6 +15827,7 @@ impl Progress {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -15359,6 +15956,10 @@ impl Progress {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Progress {
@@ -15366,6 +15967,7 @@ impl Into<VTag> for Progress {
         let mut vtag = VTag::new("progress");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -15376,10 +15978,10 @@ impl Into<VNode> for Progress {
         VNode::from(vtag)
     }
 }
-
 pub struct Select {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Select {
@@ -15387,6 +15989,7 @@ impl Select {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -15542,6 +16145,10 @@ impl Select {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Select {
@@ -15549,6 +16156,7 @@ impl Into<VTag> for Select {
         let mut vtag = VTag::new("select");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -15559,10 +16167,10 @@ impl Into<VNode> for Select {
         VNode::from(vtag)
     }
 }
-
 pub struct Textarea {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Textarea {
@@ -15570,6 +16178,7 @@ impl Textarea {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -15770,6 +16379,10 @@ impl Textarea {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Textarea {
@@ -15777,6 +16390,7 @@ impl Into<VTag> for Textarea {
         let mut vtag = VTag::new("textarea");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -15787,10 +16401,10 @@ impl Into<VNode> for Textarea {
         VNode::from(vtag)
     }
 }
-
 pub struct Details {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Details {
@@ -15798,6 +16412,7 @@ impl Details {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -15916,6 +16531,10 @@ impl Details {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Details {
@@ -15923,6 +16542,7 @@ impl Into<VTag> for Details {
         let mut vtag = VTag::new("details");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -15933,10 +16553,10 @@ impl Into<VNode> for Details {
         VNode::from(vtag)
     }
 }
-
 pub struct Dialog {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Dialog {
@@ -15944,6 +16564,7 @@ impl Dialog {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -16057,6 +16678,10 @@ impl Dialog {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Dialog {
@@ -16064,6 +16689,7 @@ impl Into<VTag> for Dialog {
         let mut vtag = VTag::new("dialog");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -16074,10 +16700,10 @@ impl Into<VNode> for Dialog {
         VNode::from(vtag)
     }
 }
-
 pub struct Menu {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Menu {
@@ -16085,6 +16711,7 @@ impl Menu {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -16203,6 +16830,10 @@ impl Menu {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Menu {
@@ -16210,6 +16841,7 @@ impl Into<VTag> for Menu {
         let mut vtag = VTag::new("menu");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -16220,10 +16852,10 @@ impl Into<VNode> for Menu {
         VNode::from(vtag)
     }
 }
-
 pub struct Summary {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Summary {
@@ -16231,6 +16863,7 @@ impl Summary {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -16344,6 +16977,10 @@ impl Summary {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Summary {
@@ -16351,6 +16988,7 @@ impl Into<VTag> for Summary {
         let mut vtag = VTag::new("summary");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -16361,10 +16999,10 @@ impl Into<VNode> for Summary {
         VNode::from(vtag)
     }
 }
-
 pub struct Slot {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Slot {
@@ -16372,6 +17010,7 @@ impl Slot {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -16485,6 +17124,10 @@ impl Slot {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Slot {
@@ -16492,6 +17135,7 @@ impl Into<VTag> for Slot {
         let mut vtag = VTag::new("slot");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -16502,10 +17146,10 @@ impl Into<VNode> for Slot {
         VNode::from(vtag)
     }
 }
-
 pub struct Template {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Template {
@@ -16513,6 +17157,7 @@ impl Template {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -16626,6 +17271,10 @@ impl Template {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Template {
@@ -16633,6 +17282,7 @@ impl Into<VTag> for Template {
         let mut vtag = VTag::new("template");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -16643,10 +17293,10 @@ impl Into<VNode> for Template {
         VNode::from(vtag)
     }
 }
-
 pub struct Acronym {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Acronym {
@@ -16654,6 +17304,7 @@ impl Acronym {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -16767,6 +17418,10 @@ impl Acronym {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Acronym {
@@ -16774,6 +17429,7 @@ impl Into<VTag> for Acronym {
         let mut vtag = VTag::new("acronym");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -16784,10 +17440,10 @@ impl Into<VNode> for Acronym {
         VNode::from(vtag)
     }
 }
-
 pub struct Applet {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Applet {
@@ -16795,6 +17451,7 @@ impl Applet {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -16928,6 +17585,10 @@ impl Applet {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Applet {
@@ -16935,6 +17596,7 @@ impl Into<VTag> for Applet {
         let mut vtag = VTag::new("applet");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -16945,10 +17607,10 @@ impl Into<VNode> for Applet {
         VNode::from(vtag)
     }
 }
-
 pub struct Basefont {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Basefont {
@@ -16956,6 +17618,7 @@ impl Basefont {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -17074,6 +17737,10 @@ impl Basefont {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Basefont {
@@ -17081,6 +17748,7 @@ impl Into<VTag> for Basefont {
         let mut vtag = VTag::new("basefont");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -17091,10 +17759,10 @@ impl Into<VNode> for Basefont {
         VNode::from(vtag)
     }
 }
-
 pub struct Bgsound {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Bgsound {
@@ -17102,6 +17770,7 @@ impl Bgsound {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -17220,6 +17889,10 @@ impl Bgsound {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Bgsound {
@@ -17227,6 +17900,7 @@ impl Into<VTag> for Bgsound {
         let mut vtag = VTag::new("bgsound");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -17237,10 +17911,10 @@ impl Into<VNode> for Bgsound {
         VNode::from(vtag)
     }
 }
-
 pub struct Big {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Big {
@@ -17248,6 +17922,7 @@ impl Big {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -17361,6 +18036,10 @@ impl Big {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Big {
@@ -17368,6 +18047,7 @@ impl Into<VTag> for Big {
         let mut vtag = VTag::new("big");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -17378,10 +18058,10 @@ impl Into<VNode> for Big {
         VNode::from(vtag)
     }
 }
-
 pub struct Blink {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Blink {
@@ -17389,6 +18069,7 @@ impl Blink {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -17502,6 +18183,10 @@ impl Blink {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Blink {
@@ -17509,6 +18194,7 @@ impl Into<VTag> for Blink {
         let mut vtag = VTag::new("blink");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -17519,10 +18205,10 @@ impl Into<VNode> for Blink {
         VNode::from(vtag)
     }
 }
-
 pub struct Center {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Center {
@@ -17530,6 +18216,7 @@ impl Center {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -17643,6 +18330,10 @@ impl Center {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Center {
@@ -17650,6 +18341,7 @@ impl Into<VTag> for Center {
         let mut vtag = VTag::new("center");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -17660,10 +18352,10 @@ impl Into<VNode> for Center {
         VNode::from(vtag)
     }
 }
-
 pub struct Content {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Content {
@@ -17671,6 +18363,7 @@ impl Content {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -17784,6 +18477,10 @@ impl Content {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Content {
@@ -17791,6 +18488,7 @@ impl Into<VTag> for Content {
         let mut vtag = VTag::new("content");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -17801,10 +18499,10 @@ impl Into<VNode> for Content {
         VNode::from(vtag)
     }
 }
-
 pub struct Dir {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Dir {
@@ -17812,6 +18510,7 @@ impl Dir {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -17925,6 +18624,10 @@ impl Dir {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Dir {
@@ -17932,6 +18635,7 @@ impl Into<VTag> for Dir {
         let mut vtag = VTag::new("dir");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -17942,10 +18646,10 @@ impl Into<VNode> for Dir {
         VNode::from(vtag)
     }
 }
-
 pub struct Font {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Font {
@@ -17953,6 +18657,7 @@ impl Font {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -18071,6 +18776,10 @@ impl Font {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Font {
@@ -18078,6 +18787,7 @@ impl Into<VTag> for Font {
         let mut vtag = VTag::new("font");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -18088,10 +18798,10 @@ impl Into<VNode> for Font {
         VNode::from(vtag)
     }
 }
-
 pub struct Frame {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Frame {
@@ -18099,6 +18809,7 @@ impl Frame {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -18212,6 +18923,10 @@ impl Frame {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Frame {
@@ -18219,6 +18934,7 @@ impl Into<VTag> for Frame {
         let mut vtag = VTag::new("frame");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -18229,10 +18945,10 @@ impl Into<VNode> for Frame {
         VNode::from(vtag)
     }
 }
-
 pub struct Frameset {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Frameset {
@@ -18240,6 +18956,7 @@ impl Frameset {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -18353,6 +19070,10 @@ impl Frameset {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Frameset {
@@ -18360,6 +19081,7 @@ impl Into<VTag> for Frameset {
         let mut vtag = VTag::new("frameset");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -18370,10 +19092,10 @@ impl Into<VNode> for Frameset {
         VNode::from(vtag)
     }
 }
-
 pub struct Hgroup {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Hgroup {
@@ -18381,6 +19103,7 @@ impl Hgroup {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -18494,6 +19217,10 @@ impl Hgroup {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Hgroup {
@@ -18501,6 +19228,7 @@ impl Into<VTag> for Hgroup {
         let mut vtag = VTag::new("hgroup");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -18511,10 +19239,10 @@ impl Into<VNode> for Hgroup {
         VNode::from(vtag)
     }
 }
-
 pub struct Image {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Image {
@@ -18522,6 +19250,7 @@ impl Image {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -18635,6 +19364,10 @@ impl Image {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Image {
@@ -18642,6 +19375,7 @@ impl Into<VTag> for Image {
         let mut vtag = VTag::new("image");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -18652,10 +19386,10 @@ impl Into<VNode> for Image {
         VNode::from(vtag)
     }
 }
-
 pub struct Keygen {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Keygen {
@@ -18663,6 +19397,7 @@ impl Keygen {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -18808,6 +19543,10 @@ impl Keygen {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Keygen {
@@ -18815,6 +19554,7 @@ impl Into<VTag> for Keygen {
         let mut vtag = VTag::new("keygen");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -18825,10 +19565,10 @@ impl Into<VNode> for Keygen {
         VNode::from(vtag)
     }
 }
-
 pub struct Marquee {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Marquee {
@@ -18836,6 +19576,7 @@ impl Marquee {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -18959,6 +19700,10 @@ impl Marquee {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Marquee {
@@ -18966,6 +19711,7 @@ impl Into<VTag> for Marquee {
         let mut vtag = VTag::new("marquee");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -18976,10 +19722,10 @@ impl Into<VNode> for Marquee {
         VNode::from(vtag)
     }
 }
-
 pub struct Menuitem {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Menuitem {
@@ -18987,6 +19733,7 @@ impl Menuitem {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -19100,6 +19847,10 @@ impl Menuitem {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Menuitem {
@@ -19107,6 +19858,7 @@ impl Into<VTag> for Menuitem {
         let mut vtag = VTag::new("menuitem");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -19117,10 +19869,10 @@ impl Into<VNode> for Menuitem {
         VNode::from(vtag)
     }
 }
-
 pub struct Nobr {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Nobr {
@@ -19128,6 +19880,7 @@ impl Nobr {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -19241,6 +19994,10 @@ impl Nobr {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Nobr {
@@ -19248,6 +20005,7 @@ impl Into<VTag> for Nobr {
         let mut vtag = VTag::new("nobr");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -19258,10 +20016,10 @@ impl Into<VNode> for Nobr {
         VNode::from(vtag)
     }
 }
-
 pub struct Noembed {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Noembed {
@@ -19269,6 +20027,7 @@ impl Noembed {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -19382,6 +20141,10 @@ impl Noembed {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Noembed {
@@ -19389,6 +20152,7 @@ impl Into<VTag> for Noembed {
         let mut vtag = VTag::new("noembed");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -19399,10 +20163,10 @@ impl Into<VNode> for Noembed {
         VNode::from(vtag)
     }
 }
-
 pub struct Noframes {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Noframes {
@@ -19410,6 +20174,7 @@ impl Noframes {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -19523,6 +20288,10 @@ impl Noframes {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Noframes {
@@ -19530,6 +20299,7 @@ impl Into<VTag> for Noframes {
         let mut vtag = VTag::new("noframes");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -19540,10 +20310,10 @@ impl Into<VNode> for Noframes {
         VNode::from(vtag)
     }
 }
-
 pub struct Plaintext {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Plaintext {
@@ -19551,6 +20321,7 @@ impl Plaintext {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -19664,6 +20435,10 @@ impl Plaintext {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Plaintext {
@@ -19671,6 +20446,7 @@ impl Into<VTag> for Plaintext {
         let mut vtag = VTag::new("plaintext");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -19681,10 +20457,10 @@ impl Into<VNode> for Plaintext {
         VNode::from(vtag)
     }
 }
-
 pub struct Rb {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Rb {
@@ -19692,6 +20468,7 @@ impl Rb {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -19805,6 +20582,10 @@ impl Rb {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Rb {
@@ -19812,6 +20593,7 @@ impl Into<VTag> for Rb {
         let mut vtag = VTag::new("rb");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -19822,10 +20604,10 @@ impl Into<VNode> for Rb {
         VNode::from(vtag)
     }
 }
-
 pub struct Rtc {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Rtc {
@@ -19833,6 +20615,7 @@ impl Rtc {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -19946,6 +20729,10 @@ impl Rtc {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Rtc {
@@ -19953,6 +20740,7 @@ impl Into<VTag> for Rtc {
         let mut vtag = VTag::new("rtc");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -19963,10 +20751,10 @@ impl Into<VNode> for Rtc {
         VNode::from(vtag)
     }
 }
-
 pub struct Shadow {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Shadow {
@@ -19974,6 +20762,7 @@ impl Shadow {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -20087,6 +20876,10 @@ impl Shadow {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Shadow {
@@ -20094,6 +20887,7 @@ impl Into<VTag> for Shadow {
         let mut vtag = VTag::new("shadow");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -20104,10 +20898,10 @@ impl Into<VNode> for Shadow {
         VNode::from(vtag)
     }
 }
-
 pub struct Spacer {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Spacer {
@@ -20115,6 +20909,7 @@ impl Spacer {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -20228,6 +21023,10 @@ impl Spacer {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Spacer {
@@ -20235,6 +21034,7 @@ impl Into<VTag> for Spacer {
         let mut vtag = VTag::new("spacer");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -20245,10 +21045,10 @@ impl Into<VNode> for Spacer {
         VNode::from(vtag)
     }
 }
-
 pub struct Strike {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Strike {
@@ -20256,6 +21056,7 @@ impl Strike {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -20369,6 +21170,10 @@ impl Strike {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Strike {
@@ -20376,6 +21181,7 @@ impl Into<VTag> for Strike {
         let mut vtag = VTag::new("strike");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -20386,10 +21192,10 @@ impl Into<VNode> for Strike {
         VNode::from(vtag)
     }
 }
-
 pub struct Tt {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Tt {
@@ -20397,6 +21203,7 @@ impl Tt {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -20510,6 +21317,10 @@ impl Tt {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Tt {
@@ -20517,6 +21328,7 @@ impl Into<VTag> for Tt {
         let mut vtag = VTag::new("tt");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -20527,10 +21339,10 @@ impl Into<VNode> for Tt {
         VNode::from(vtag)
     }
 }
-
 pub struct Xmp {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl Xmp {
@@ -20538,6 +21350,7 @@ impl Xmp {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -20651,6 +21464,10 @@ impl Xmp {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for Xmp {
@@ -20658,6 +21475,7 @@ impl Into<VTag> for Xmp {
         let mut vtag = VTag::new("xmp");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -20668,10 +21486,10 @@ impl Into<VNode> for Xmp {
         VNode::from(vtag)
     }
 }
-
 pub struct H1 {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl H1 {
@@ -20679,6 +21497,7 @@ impl H1 {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -20792,6 +21611,10 @@ impl H1 {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for H1 {
@@ -20799,6 +21622,7 @@ impl Into<VTag> for H1 {
         let mut vtag = VTag::new("h1");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -20809,10 +21633,10 @@ impl Into<VNode> for H1 {
         VNode::from(vtag)
     }
 }
-
 pub struct H2 {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl H2 {
@@ -20820,6 +21644,7 @@ impl H2 {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -20933,6 +21758,10 @@ impl H2 {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for H2 {
@@ -20940,6 +21769,7 @@ impl Into<VTag> for H2 {
         let mut vtag = VTag::new("h2");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -20950,10 +21780,10 @@ impl Into<VNode> for H2 {
         VNode::from(vtag)
     }
 }
-
 pub struct H3 {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl H3 {
@@ -20961,6 +21791,7 @@ impl H3 {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -21074,6 +21905,10 @@ impl H3 {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for H3 {
@@ -21081,6 +21916,7 @@ impl Into<VTag> for H3 {
         let mut vtag = VTag::new("h3");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -21091,10 +21927,10 @@ impl Into<VNode> for H3 {
         VNode::from(vtag)
     }
 }
-
 pub struct H4 {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl H4 {
@@ -21102,6 +21938,7 @@ impl H4 {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -21215,6 +22052,10 @@ impl H4 {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for H4 {
@@ -21222,6 +22063,7 @@ impl Into<VTag> for H4 {
         let mut vtag = VTag::new("h4");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -21232,10 +22074,10 @@ impl Into<VNode> for H4 {
         VNode::from(vtag)
     }
 }
-
 pub struct H5 {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl H5 {
@@ -21243,6 +22085,7 @@ impl H5 {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -21356,6 +22199,10 @@ impl H5 {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for H5 {
@@ -21363,6 +22210,7 @@ impl Into<VTag> for H5 {
         let mut vtag = VTag::new("h5");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }
@@ -21373,10 +22221,10 @@ impl Into<VNode> for H5 {
         VNode::from(vtag)
     }
 }
-
 pub struct H6 {
     attributes: Vec<PositionalAttr>,
     children: Vec<VNode>,
+    listeners: Vec<Listener>,
 }
 
 impl H6 {
@@ -21384,6 +22232,7 @@ impl H6 {
         Self {
             attributes: vec![],
             children: vec![],
+            listeners: vec![],
         }
     }
 
@@ -21497,6 +22346,10 @@ impl H6 {
         self.children.push(VNode::from(VText::new(text)));
         self
     }
+    pub fn listener(mut self, listener: Listener) -> Self {
+        self.listeners.push(listener);
+        self
+    }
 }
 
 impl Into<VTag> for H6 {
@@ -21504,6 +22357,7 @@ impl Into<VTag> for H6 {
         let mut vtag = VTag::new("h6");
         vtag.attributes = Attributes::Vec(self.attributes);
         vtag.add_children(self.children.into_iter());
+        vtag.add_listeners(self.listeners);
         vtag
     }
 }

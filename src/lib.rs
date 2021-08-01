@@ -1,7 +1,12 @@
 #![allow(clippy::from_over_into)]
 
+use std::rc::Rc;
+
 pub mod elements;
 pub mod functions;
+pub mod listeners;
+
+pub type Listener = Rc<dyn yew::virtual_dom::Listener>;
 
 #[cfg(test)]
 mod tests {
@@ -58,6 +63,7 @@ mod tests {
                 div()
                     .component::<Component2>(yew::props!(Component2::Properties {}))
                     .child(h2("test2"))
+                    .listener(on_click(|_e| ConsoleService::log("test")))
                     .into()
             }
         }
