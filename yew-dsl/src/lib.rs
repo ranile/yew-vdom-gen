@@ -74,10 +74,12 @@ mod tests {
             }
         }
 
-        yew::start_app::<Comp>();
+        let element = yew::utils::document().get_element_by_id("output").unwrap();
+        let app: App<Comp> = yew::App::new();
+        app.mount(element.clone());
 
         assert_eq!(
-            yew::utils::document().body().unwrap().inner_html(),
+            element.inner_html(),
             r#"<div><h1>test</h1><h2>test2</h2></div>"#
         )
     }
