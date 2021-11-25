@@ -4,15 +4,22 @@
     <cargoProject FILE="$PROJECT_DIR$/yew-vdomer/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1fba1065-11b3-42d3-911d-ff24ec556719" name="Changes" comment="more macros">
-      <change beforePath="$PROJECT_DIR$/codegen/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/codegen/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yew-vdomer/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/yew-vdomer/Cargo.toml" afterDir="false" />
+    <list default="true" id="1fba1065-11b3-42d3-911d-ff24ec556719" name="Changes" comment="tests + little fixes">
+      <change afterPath="$PROJECT_DIR$/yew-vdomer/src/fragment.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yew-vdomer/src/lib.rs" beforeDir="false" afterPath="$PROJECT_DIR$/yew-vdomer/src/lib.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Rust File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -45,15 +52,39 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/yew-vdomer" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration name="Run yew-vdomer" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
+      <option name="command" value="run --package yew-vdomer --bin yew-vdomer" />
+      <option name="workingDirectory" value="file://$PROJECT_DIR$/yew-vdomer" />
+      <option name="channel" value="DEFAULT" />
+      <option name="requiredFeatures" value="true" />
+      <option name="allFeatures" value="false" />
+      <option name="emulateTerminal" value="false" />
+      <option name="withSudo" value="false" />
+      <option name="backtrace" value="SHORT" />
+      <envs />
+      <option name="isRedirectInput" value="false" />
+      <option name="redirectInputPath" value="" />
+      <method v="2">
+        <option name="CARGO.BUILD_TASK_PROVIDER" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Cargo.Run yew-vdomer" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="RustProjectSettings">
     <option name="toolchainHomeDirectory" value="$USER_HOME$/.cargo/bin" />
+    <option name="version" value="2" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -63,7 +94,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1637841978342</updated>
-      <workItem from="1637841985025" duration="6086000" />
+      <workItem from="1637841985025" duration="7388000" />
+      <workItem from="1637850031020" duration="2715000" />
     </task>
     <task id="LOCAL-00001" summary="update to master yew">
       <created>1637847396085</created>
@@ -79,7 +111,14 @@
       <option name="project" value="LOCAL" />
       <updated>1637848343755</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="tests + little fixes">
+      <created>1637849027643</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1637849027643</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -95,10 +134,12 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="update to master yew" />
     <MESSAGE value="more macros" />
-    <option name="LAST_COMMIT_MESSAGE" value="more macros" />
+    <MESSAGE value="tests + little fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="tests + little fixes" />
   </component>
 </project>

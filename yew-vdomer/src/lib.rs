@@ -27,7 +27,7 @@
 //! #    fn create(ctx: &Context<Self>) -> Self { Self }
 //!     // ...
 //!     fn view(&self, ctx: &Context<Self>) -> Html {
-//!         div()
+//!         fragment()
 //!             .component::<Component1>(yew::props!(Component1::Properties {}))
 //!             .child(h2("test2"))
 //!             .listener(on_click(|_e| log!("test")))
@@ -39,7 +39,7 @@
 #![allow(clippy::from_over_into)]
 
 use std::rc::Rc;
-use yew::virtual_dom::{AttrValue, VComp, VNode, VTag, VText};
+use yew::virtual_dom::{AttrValue, VComp, VNode, VText};
 use yew::{Component, NodeRef};
 
 /// Houses all the [HTML elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
@@ -52,6 +52,7 @@ pub mod elements;
 /// inner text node.
 pub mod functions;
 
+pub mod fragment;
 /// Event Listeners that can be attached using element's `listener` method
 pub mod listeners;
 
@@ -75,8 +76,8 @@ pub trait VElement: Sized {
     fn children_mut(&mut self) -> &mut Vec<VNode>;
     fn listeners_mut(&mut self) -> &mut Vec<Listener>;
 
-    fn child(mut self, element: impl Into<VTag>) -> Self {
-        self.children_mut().push(VNode::from(element.into()));
+    fn child(mut self, element: impl Into<VNode>) -> Self {
+        self.children_mut().push(element.into());
         self
     }
 
@@ -171,6 +172,7 @@ pub mod prelude {
     //! A list of types which are useful for using the library.
     //! Unless you have name conflicts, it is recommended to add `yew_dsl::prelude::*;` import.
 
+    pub use super::fragment::{fragment, fragment_with_children};
     pub use super::functions::*;
     pub use super::listeners::*;
     pub use super::VElement;
@@ -179,9 +181,9 @@ pub mod prelude {
 #[cfg(test)]
 mod tests {
     use crate::prelude::*;
+    use gloo_console::log;
     use wasm_bindgen_test::*;
     use yew::prelude::*;
-    use gloo_console::log;
 
     wasm_bindgen_test_configure!(run_in_browser);
 
@@ -193,10 +195,12 @@ mod tests {
             type Message = ();
             type Properties = ();
 
-            fn create(_ctx: &Context<Self>) -> Self { Self }
+            fn create(_ctx: &Context<Self>) -> Self {
+                Self
+            }
 
             fn view(&self, _ctx: &Context<Self>) -> Html {
-                h1("test").into()
+                fragment_with_children([h1("test")]).into()
             }
         }
 
@@ -206,7 +210,9 @@ mod tests {
             type Message = ();
             type Properties = ();
 
-            fn create(_ctx: &Context<Self>) -> Self { Self }
+            fn create(_ctx: &Context<Self>) -> Self {
+                Self
+            }
 
             fn view(&self, _ctx: &Context<Self>) -> Html {
                 div()
