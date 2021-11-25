@@ -1,3 +1,5 @@
+//! Contains the Yew fragment generation code
+
 use crate::{Listener, VElement};
 use yew::virtual_dom::{VList, VNode};
 

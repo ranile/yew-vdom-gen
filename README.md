@@ -1,4 +1,4 @@
-# Yew DSL
+# Yew VDOM Generator
 
 Construct Yew’s Virtual DOM using ergonomic Rust idioms.
 

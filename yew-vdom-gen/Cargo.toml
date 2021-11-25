@@ -1,5 +1,5 @@
 [package]
-name = "yew-vdomer"
+name = "yew-vdom-gen"
 version = "0.1.0"
 edition = "2021"
 

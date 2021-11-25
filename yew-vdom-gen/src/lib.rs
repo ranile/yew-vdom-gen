@@ -7,7 +7,7 @@
 //!
 //! ```rust
 //! use yew::prelude::*;
-//! use yew_vdomer::prelude::*;
+//! use yew_vdom_gen::prelude::*;
 //! use gloo_console::log;
 //!
 //! struct Component1;
@@ -42,7 +42,7 @@ use std::rc::Rc;
 use yew::virtual_dom::{AttrValue, VComp, VNode, VText};
 use yew::{Component, NodeRef};
 
-/// Houses all the [HTML elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
+/// Contains all the [HTML elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
 pub mod elements;
 
 /// Functions for creating elements.
@@ -64,7 +64,7 @@ pub mod listeners;
 /// # Example
 ///
 /// ```rust
-/// use yew_vdomer::prelude::*;
+/// use yew_vdom_gen::prelude::*;
 ///
 /// button("text")
 ///     .listener(on_click(|_event| { /* Click Handler */ }));

@@ -3,9 +3,9 @@
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/yew-vdomer/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/yew-vdom-gen/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/codegen/venv" />
-      <excludeFolder url="file://$MODULE_DIR$/yew-vdomer/target" />
+      <excludeFolder url="file://$MODULE_DIR$/yew-vdom-gen/target" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

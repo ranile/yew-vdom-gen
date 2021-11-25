@@ -184,18 +184,18 @@ build_velement!({ident}, "{element_name}", [{NEW_LINE}{f'{NEW_LINE}'.join(attrs)
     {CURLY_BRACE_CLOSE}
     '''.strip())
 
-with open('../yew-vdomer/src/elements.rs', 'w') as f:
+with open('../yew-vdom-gen/src/elements.rs', 'w') as f:
     f.write('use yew::virtual_dom::{VNode, AttrValue, VTag};')
     f.write("use crate::{Attribute, Listener, VElement, build_velement};")
     f.write('\n'.join(elements_rs))
 
-with open('../yew-vdomer/src/functions.rs', 'w') as f:
+with open('../yew-vdom-gen/src/functions.rs', 'w') as f:
     f.write('use yew::virtual_dom::{AttrValue};')
     f.write('use crate::elements::*;')
     f.write('use crate::VElement;')
     f.write(''.join(functions_rs))
 
-with open('../yew-vdomer/src/listeners.rs', 'w') as f:
+with open('../yew-vdom-gen/src/listeners.rs', 'w') as f:
     f.write("use std::rc::Rc;")
     f.write("use yew::Callback;")
     f.write("use crate::Listener;")
