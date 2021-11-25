@@ -144,15 +144,6 @@ listeners_rs = []
 e = ast.get_elements_with_attrs()
 
 
-def map_attrs_to_fns(attrs):
-    output = []
-    for attr in attrs:
-        ident = attr if attr not in KEYWORDS else f'r#{attr}'
-        output.append(f'{ident} => "{attr}";')
-
-    return ''.join(output)
-
-
 def map_listeners_to_fns():
     output = []
     for (listener, ty) in LISTENERS.items():
@@ -183,9 +174,6 @@ for (element_name, element_attrs) in e.items():
     elements_rs.append(f'''
 build_velement!({ident}, "{element_name}", [{NEW_LINE}{f'{NEW_LINE}'.join(attrs)}{NEW_LINE}]);
     '''.strip())
-    # impl {ident} {CURLY_BRACE_OPEN}
-    #     {map_attrs_to_fns(attrs).strip()}
-    # {CURLY_BRACE_CLOSE}
 
     param = '' if default is None else 'value: impl Into<AttrValue>'
     call = '' if default is None else '.text(value.into())'

@@ -8,11 +8,8 @@
 //! ```rust
 //! use yew::prelude::*;
 //! use yew_vdomer::prelude::*;
+//! use gloo_console::log;
 //!
-//! # macro_rules! log {
-//! # ($($tt:tt)*) => {{}}
-//! # }
-//! #
 //! struct Component1;
 //! impl Component for Component1 {
 //! #    type Message = ();
@@ -66,7 +63,8 @@ pub mod listeners;
 /// # Example
 ///
 /// ```rust
-/// # use yew_vdomer::prelude::*;
+/// use yew_vdomer::prelude::*;
+///
 /// button("text")
 ///     .listener(on_click(|_event| { /* Click Handler */ }));
 /// ```
@@ -175,6 +173,7 @@ pub mod prelude {
 
     pub use super::functions::*;
     pub use super::listeners::*;
+    pub use super::VElement;
 }
 
 #[cfg(test)]
@@ -182,65 +181,44 @@ mod tests {
     use crate::prelude::*;
     use wasm_bindgen_test::*;
     use yew::prelude::*;
-    use yew::services::ConsoleService;
+    use gloo_console::log;
 
     wasm_bindgen_test_configure!(run_in_browser);
 
     #[wasm_bindgen_test]
     fn it_works() {
-        struct Component2;
+        struct SomeComponent;
 
-        impl Component for Component2 {
+        impl Component for SomeComponent {
             type Message = ();
             type Properties = ();
 
-            fn create(_props: Self::Properties, _link: ComponentLink<Self>) -> Self {
-                Self
-            }
+            fn create(_ctx: &Context<Self>) -> Self { Self }
 
-            fn update(&mut self, _msg: Self::Message) -> ShouldRender {
-                false
-            }
-
-            fn change(&mut self, _props: Self::Properties) -> ShouldRender {
-                false
-            }
-
-            fn view(&self) -> Html {
+            fn view(&self, _ctx: &Context<Self>) -> Html {
                 h1("test").into()
             }
         }
 
-        struct Comp;
+        struct App;
 
-        impl Component for Comp {
+        impl Component for App {
             type Message = ();
             type Properties = ();
 
-            fn create(_props: Self::Properties, _link: ComponentLink<Self>) -> Self {
-                Self
-            }
+            fn create(_ctx: &Context<Self>) -> Self { Self }
 
-            fn update(&mut self, _msg: Self::Message) -> ShouldRender {
-                false
-            }
-
-            fn change(&mut self, _props: Self::Properties) -> ShouldRender {
-                false
-            }
-
-            fn view(&self) -> Html {
+            fn view(&self, _ctx: &Context<Self>) -> Html {
                 div()
-                    .component::<Component2>(yew::props!(Component2::Properties {}))
+                    .component::<SomeComponent>(yew::props!(SomeComponent::Properties {}))
                     .child(h2("test2"))
-                    .listener(on_click(|_e| ConsoleService::log("test")))
+                    .listener(on_click(|_e| log!("test")))
                     .into()
             }
         }
 
-        let element = yew::utils::document().get_element_by_id("output").unwrap();
-        let app: App<Comp> = yew::App::new();
-        app.mount(element.clone());
+        let element = gloo_utils::document().get_element_by_id("output").unwrap();
+        yew::start_app_in_element::<App>(element.clone());
 
         assert_eq!(
             element.inner_html(),

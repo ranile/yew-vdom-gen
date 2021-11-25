@@ -4,21 +4,10 @@
     <cargoProject FILE="$PROJECT_DIR$/yew-vdomer/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1fba1065-11b3-42d3-911d-ff24ec556719" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/codegen/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegen/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/yew-vdomer/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/yew-dsl.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cargo.toml" beforeDir="false" />
+    <list default="true" id="1fba1065-11b3-42d3-911d-ff24ec556719" name="Changes" comment="more macros">
       <change beforePath="$PROJECT_DIR$/codegen/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/codegen/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yew-dsl/Cargo.toml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/yew-dsl/src/elements.rs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/yew-dsl/src/functions.rs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/yew-dsl/src/lib.rs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/yew-dsl/src/listeners.rs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yew-vdomer/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/yew-vdomer/Cargo.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yew-vdomer/src/lib.rs" beforeDir="false" afterPath="$PROJECT_DIR$/yew-vdomer/src/lib.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +47,11 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/yew-vdomer" />
+    </key>
+  </component>
   <component name="RustProjectSettings">
     <option name="toolchainHomeDirectory" value="$USER_HOME$/.cargo/bin" />
   </component>
@@ -69,8 +63,23 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1637841978342</updated>
-      <workItem from="1637841985025" duration="4815000" />
+      <workItem from="1637841985025" duration="6086000" />
     </task>
+    <task id="LOCAL-00001" summary="update to master yew">
+      <created>1637847396085</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1637847396085</updated>
+    </task>
+    <task id="LOCAL-00002" summary="more macros">
+      <created>1637848343755</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1637848343755</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -86,5 +95,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="update to master yew" />
+    <MESSAGE value="more macros" />
+    <option name="LAST_COMMIT_MESSAGE" value="more macros" />
   </component>
 </project>
