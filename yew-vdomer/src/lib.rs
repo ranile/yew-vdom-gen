@@ -7,7 +7,7 @@
 //!
 //! ```rust
 //! use yew::prelude::*;
-//! use yew_dsl::prelude::*;
+//! use yew_vdomer::prelude::*;
 //!
 //! # macro_rules! log {
 //! # ($($tt:tt)*) => {{}}
@@ -17,11 +17,8 @@
 //! impl Component for Component1 {
 //! #    type Message = ();
 //! #    type Properties = ();
-//! #    fn create(_props: Self::Properties, _link: ComponentLink<Self>) -> Self { Self }
-//! #    fn update(&mut self, _msg: Self::Message) -> ShouldRender { false }
-//! #    fn change(&mut self, _props: Self::Properties) -> ShouldRender { false }
-//!     // ...
-//!     fn view(&self) -> Html {
+//! #    fn create(ctx: &Context<Self>) -> Self { Self }
+//!     fn view(&self, ctx: &Context<Self>) -> Html {
 //!         h1("Heading ").into()
 //!     }
 //! }
@@ -30,11 +27,9 @@
 //! impl Component for Component2 {
 //! #    type Message = ();
 //! #    type Properties = ();
-//! #    fn create(_props: Self::Properties, _link: ComponentLink<Self>) -> Self { Self }
-//! #    fn update(&mut self, _msg: Self::Message) -> ShouldRender { false }
-//! #    fn change(&mut self, _props: Self::Properties) -> ShouldRender { false }
+//! #    fn create(ctx: &Context<Self>) -> Self { Self }
 //!     // ...
-//!     fn view(&self) -> Html {
+//!     fn view(&self, ctx: &Context<Self>) -> Html {
 //!         div()
 //!             .component::<Component1>(yew::props!(Component1::Properties {}))
 //!             .child(h2("test2"))
@@ -47,6 +42,8 @@
 #![allow(clippy::from_over_into)]
 
 use std::rc::Rc;
+use yew::virtual_dom::{AttrValue, VComp, VNode, VTag, VText};
+use yew::{Component, NodeRef};
 
 /// Houses all the [HTML elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
 pub mod elements;
@@ -69,11 +66,98 @@ pub mod listeners;
 /// # Example
 ///
 /// ```rust
-/// # use yew_dsl::prelude::*;
+/// # use yew_vdomer::prelude::*;
 /// button("text")
 ///     .listener(on_click(|_event| { /* Click Handler */ }));
 /// ```
+
 pub type Listener = Rc<dyn yew::virtual_dom::Listener>;
+
+pub trait VElement: Sized {
+    fn children_mut(&mut self) -> &mut Vec<VNode>;
+    fn listeners_mut(&mut self) -> &mut Vec<Listener>;
+
+    fn child(mut self, element: impl Into<VTag>) -> Self {
+        self.children_mut().push(VNode::from(element.into()));
+        self
+    }
+
+    fn component<C: Component>(mut self, props: C::Properties) -> Self {
+        let props = Rc::<C::Properties>::new(props);
+        self.children_mut().push(VNode::from(VComp::new::<C>(
+            props,
+            NodeRef::default(),
+            None,
+        )));
+        self
+    }
+
+    fn text(mut self, text: impl Into<AttrValue>) -> Self {
+        self.children_mut().push(VNode::from(VText::new(text)));
+        self
+    }
+    fn listener(mut self, listener: Listener) -> Self {
+        self.listeners_mut().push(listener);
+        self
+    }
+}
+
+pub struct Attribute {
+    key: &'static str,
+    value: AttrValue,
+}
+
+impl Attribute {
+    pub fn new(key: &'static str, value: AttrValue) -> Self {
+        Self { key, value }
+    }
+}
+
+#[macro_export]
+macro_rules! build_velement {
+    ($ident:ident, $element_name:literal) => {
+        pub struct $ident {
+            attributes: Vec<Attribute>,
+            children: Vec<VNode>,
+            listeners: Vec<Listener>,
+        }
+        pub(crate) fn new() -> Self {
+            Self {
+                attributes: vec![],
+                children: vec![],
+                listeners: vec![],
+            }
+        }
+        impl VElement for $ident {
+            fn children_mut(&mut self) -> &mut Vec<VNode> {
+                &mut self.children
+            }
+
+            fn listeners_mut(&mut self) -> &mut Vec<Listener> {
+                &mut self.listeners
+            }
+        }
+
+        impl Into<VTag> for $ident {
+            fn into(self) -> VTag {
+                let mut vtag = VTag::new($element_name);
+                for attr in self.attributes.into_iter() {
+                    vtag.add_attribute(attr.key, attr.value)
+                }
+                vtag.add_children(self.children.into_iter());
+                vtag.set_listener(self.listeners.into_iter().map(Some).collect::<Box<[_]>>());
+                vtag
+            }
+        }
+
+        impl Into<VNode> for $ident {
+            fn into(self) -> VNode {
+                let vtag: VTag = self.into();
+                VNode::from(vtag)
+            }
+        }
+    };
+}
 
 pub mod prelude {
     //! A list of types which are useful for using the library.

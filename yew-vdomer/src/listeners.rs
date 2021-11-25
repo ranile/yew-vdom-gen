@@ -51,7 +51,7 @@ where
 
 pub fn on_change<F>(callback: F) -> Listener
 where
-    F: Fn(yew::ChangeData) + 'static,
+    F: Fn(web_sys::Event) + 'static,
 {
     let listener = yew::html::onchange::Wrapper::new(Callback::from(callback));
     Rc::new(listener)
@@ -211,7 +211,7 @@ where
 
 pub fn on_input<F>(callback: F) -> Listener
 where
-    F: Fn(yew::InputData) + 'static,
+    F: Fn(web_sys::InputEvent) + 'static,
 {
     let listener = yew::html::oninput::Wrapper::new(Callback::from(callback));
     Rc::new(listener)

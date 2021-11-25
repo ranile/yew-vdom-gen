@@ -45,7 +45,7 @@ LISTENERS = {
     "cancel": "web_sys::Event",
     "canplay": "web_sys::Event",
     "canplaythrough": "web_sys::Event",
-    "change": "yew::ChangeData",
+    "change": "web_sys::Event",
     "click": "yew::MouseEvent",
     "close": "web_sys::Event",
     "contextmenu": "yew::MouseEvent",
@@ -65,7 +65,7 @@ LISTENERS = {
     "error": "web_sys::Event",
     "focus": "web_sys::FocusEvent",
     "formdata": "web_sys::Event",
-    "input": "yew::InputData",
+    "input": "web_sys::InputEvent",
     "invalid": "web_sys::Event",
     "keydown": "web_sys::KeyboardEvent",
     "keypress": "web_sys::KeyboardEvent",
@@ -135,27 +135,6 @@ LISTENERS = {
     "transitionstart": "web_sys::TransitionEvent",
 }
 
-ELEMENT_FUNCTIONS = '''
-    pub fn child(mut self, element: impl Into<VTag>) -> Self {
-        self.children.push(VNode::from(element.into()));
-        self
-    }
-
-    pub fn component<C: Component>(mut self, props: C::Properties) -> Self {
-        self.children.push(VNode::from(VComp::new::<C>(props, NodeRef::default(), None)));
-        self
-    }
-
-    pub fn text(mut self, text: impl Into<AttrValue>) -> Self {
-        self.children.push(VNode::from(VText::new(text)));
-        self
-    }
-    pub fn listener(mut self, listener: Listener) -> Self {
-        self.listeners.push(listener);
-        self
-    }
-'''.strip()
-
 elements_rs = []
 functions_rs = []
 listeners_rs = []
@@ -169,7 +148,7 @@ def map_attrs_to_fns(attrs):
         ident = attr if attr not in KEYWORDS else f'r#{attr}'
         output.append(f'''
     pub fn {ident}(mut self, value: AttrValue) -> Self {CURLY_BRACE_OPEN}
-        self.attributes.push(PositionalAttr::new("{attr}", value));
+        self.attributes.push(Attribute::new("{attr}", value));
         self
     {CURLY_BRACE_CLOSE}
         ''')
@@ -190,47 +169,17 @@ def map_listeners_to_fns():
 
     return ''.join(output)
 
+
 for (element_name, element_attrs) in e.items():
     attrs, default = [attr.replace('-', '_') for attr in element_attrs['attrs']], element_attrs['default']
     element_name = element_name.strip('>').strip('<')
     ident = element_name.title()
 
     elements_rs.append(f'''
-pub struct {ident} {CURLY_BRACE_OPEN}
-    attributes: Vec<PositionalAttr>,
-    children: Vec<VNode>,
-    listeners: Vec<Listener>,
-{CURLY_BRACE_CLOSE}
+build_velement!({ident}, "{element_name}");
 
 impl {ident} {CURLY_BRACE_OPEN}
-    pub(crate) fn new() -> Self {CURLY_BRACE_OPEN}
-        Self {CURLY_BRACE_OPEN}
-            attributes: vec![],
-            children: vec![],
-            listeners: vec![],
-        {CURLY_BRACE_CLOSE}
-    {CURLY_BRACE_CLOSE}
-    
     {map_attrs_to_fns(attrs).strip()}
-    
-    {ELEMENT_FUNCTIONS}
-{CURLY_BRACE_CLOSE}
-
-impl Into<VTag> for {ident} {CURLY_BRACE_OPEN}
-    fn into(self) -> VTag {CURLY_BRACE_OPEN}
-        let mut vtag = VTag::new("{element_name}");
-        vtag.attributes = Attributes::Vec(self.attributes);
-        vtag.add_children(self.children.into_iter());
-        vtag.add_listeners(self.listeners);
-        vtag
-    {CURLY_BRACE_CLOSE}
-{CURLY_BRACE_CLOSE}
-
-impl Into<VNode> for {ident} {CURLY_BRACE_OPEN}
-    fn into(self) -> VNode {CURLY_BRACE_OPEN}
-        let vtag: VTag = self.into();
-        VNode::from(vtag)
-    {CURLY_BRACE_CLOSE}
 {CURLY_BRACE_CLOSE}
     '''.strip())
 
@@ -243,18 +192,18 @@ impl Into<VNode> for {ident} {CURLY_BRACE_OPEN}
     {CURLY_BRACE_CLOSE}
     '''.strip())
 
-with open('../src/elements.rs', 'w') as f:
-    f.write('use yew::{Component, NodeRef};')
-    f.write('use yew::virtual_dom::{PositionalAttr, VNode, AttrValue, VText, VComp, VTag, Attributes};')
-    f.write("use crate::Listener;")
+with open('../yew-vdomer/src/elements.rs', 'w') as f:
+    f.write('use yew::virtual_dom::{VNode, AttrValue, VTag};')
+    f.write("use crate::{Attribute, Listener, VElement, impl_velement};")
     f.write('\n'.join(elements_rs))
 
-with open('../src/functions.rs', 'w') as f:
+with open('../yew-vdomer/src/functions.rs', 'w') as f:
     f.write('use yew::virtual_dom::{AttrValue};')
     f.write('use crate::elements::*;')
+    f.write('use crate::VElement;')
     f.write(''.join(functions_rs))
 
-with open('../src/listeners.rs', 'w') as f:
+with open('../yew-vdomer/src/listeners.rs', 'w') as f:
     f.write("use std::rc::Rc;")
     f.write("use yew::Callback;")
     f.write("use crate::Listener;")

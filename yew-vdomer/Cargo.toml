@@ -1,0 +1,11 @@
+[package]
+name = "yew-vdomer"
+version = "0.1.0"
+edition = "2018"
+
+[dependencies]
+yew = { git = "https://github.com/yewstack/yew/" }
+web-sys = "0.3"
+
+[dev-dependencies]
+wasm-bindgen-test = "0.3"
