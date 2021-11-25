@@ -9,6 +9,8 @@ KEYWORDS = [
 
 CURLY_BRACE_OPEN = '{'
 CURLY_BRACE_CLOSE = '}'
+NEW_LINE = '\n'
+TAB = '\t'
 
 BOOLEAN_ATTRS = [
     'allowfullscreen',
@@ -146,12 +148,8 @@ def map_attrs_to_fns(attrs):
     output = []
     for attr in attrs:
         ident = attr if attr not in KEYWORDS else f'r#{attr}'
-        output.append(f'''
-    pub fn {ident}(mut self, value: AttrValue) -> Self {CURLY_BRACE_OPEN}
-        self.attributes.push(Attribute::new("{attr}", value));
-        self
-    {CURLY_BRACE_CLOSE}
-        ''')
+        output.append(f'{ident} => "{attr}";')
+
     return ''.join(output)
 
 
@@ -175,13 +173,19 @@ for (element_name, element_attrs) in e.items():
     element_name = element_name.strip('>').strip('<')
     ident = element_name.title()
 
-    elements_rs.append(f'''
-build_velement!({ident}, "{element_name}");
+    attrs = [
+        # we start with {TAB} just for formatting in the output file
+        # rustfmt doesn't format items in macros
+        f'''{TAB}{attr if attr not in KEYWORDS else f'r#{attr}'} => "{attr}";'''
+        for attr in attrs
+    ]
 
-impl {ident} {CURLY_BRACE_OPEN}
-    {map_attrs_to_fns(attrs).strip()}
-{CURLY_BRACE_CLOSE}
+    elements_rs.append(f'''
+build_velement!({ident}, "{element_name}", [{NEW_LINE}{f'{NEW_LINE}'.join(attrs)}{NEW_LINE}]);
     '''.strip())
+    # impl {ident} {CURLY_BRACE_OPEN}
+    #     {map_attrs_to_fns(attrs).strip()}
+    # {CURLY_BRACE_CLOSE}
 
     param = '' if default is None else 'value: impl Into<AttrValue>'
     call = '' if default is None else '.text(value.into())'
@@ -194,7 +198,7 @@ impl {ident} {CURLY_BRACE_OPEN}
 
 with open('../yew-vdomer/src/elements.rs', 'w') as f:
     f.write('use yew::virtual_dom::{VNode, AttrValue, VTag};')
-    f.write("use crate::{Attribute, Listener, VElement, impl_velement};")
+    f.write("use crate::{Attribute, Listener, VElement, build_velement};")
     f.write('\n'.join(elements_rs))
 
 with open('../yew-vdomer/src/functions.rs', 'w') as f:

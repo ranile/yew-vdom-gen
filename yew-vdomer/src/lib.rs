@@ -115,19 +115,29 @@ impl Attribute {
 
 #[macro_export]
 macro_rules! build_velement {
-    ($ident:ident, $element_name:literal) => {
+    ($ident:ident, $element_name:literal, [$($attr_ident:ident => $attr_name:literal;)+]) => {
         pub struct $ident {
             attributes: Vec<Attribute>,
             children: Vec<VNode>,
             listeners: Vec<Listener>,
         }
-        pub(crate) fn new() -> Self {
-            Self {
-                attributes: vec![],
-                children: vec![],
-                listeners: vec![],
+        impl $ident {
+            pub(crate) fn new() -> Self {
+                Self {
+                    attributes: vec![],
+                    children: vec![],
+                    listeners: vec![],
+                }
             }
+
+            $(
+                pub fn $attr_ident (mut self, value: AttrValue) -> Self {
+                    self.attributes.push(Attribute::new($attr_name, value));
+                    self
+                }
+            )+
         }
+
         impl VElement for $ident {
             fn children_mut(&mut self) -> &mut Vec<VNode> {
                 &mut self.children
